@@ -108,7 +108,7 @@
 - h1~h6, p 요소는 서로 겹쳐 쓸 수 없으며, 본인 요소도 겹쳐 쓸 수 없습니다.
 - h1~h2 요소는 대제목인 페이지 제목이나 큰 영역의 제목에 사용됩니다.
 - h3~h4 요소는 중제목인 항목제목 등에 사용됩니다.
-- h5-h6 요소는 소제목인 설
+- h5-h6 요소는 소제목인 설명부의 제목 등에 사용됩니다.
 
 ```comment
 <h1>제목</h1>
@@ -358,6 +358,21 @@
 <img src="./images/ive.jpg" alt="아이브">
 ```
 
+#### 6-1-3. 웹 페이지에서 표현가능한 이미지 타입
+
+- 웹 페이지에서 img 요소로 추가가 가능한 요소는 다음과 같습니다.
+
+| MIME 타입 | 본딧말(확장자) |
+|----------------------|----------------------------------------|
+| image/apng | Animated Portable Network Graphics (APNG) |
+| image/avif | AV1 이미지 파일 포맷 (AVIF) |
+| image/gif | Graphics Interchange 포맷 (GIF) |
+| image/jpeg | Joint Photographic Expert Group 이미지 (JPEG)
+| image/png | Portable Network Graphics (PNG) |
+| image/svg+xml | Scalable Vector Graphics (SVG) |
+| image/webp | Web Picture 포맷 (WEBP) |
+
+
 <br><br>
 
 ### 6-2. 오디오 요소
@@ -366,14 +381,39 @@
 
 <br>
 
-### 6-2-1. 오디오 요소의 속성과 타입
+### 6-2-1. 오디오 요소의 속성과 MIME 타입
+
+- 오디오 요소에 지정하는 속성은 다음과 같습니다.
+
+| 속성 | 설명 | 
+|----------------|----------------------------------------------------------------|
+| autoplay | 해당 페이지가 로딩되면 자동으로 오디오가 시작되도록 설정하는 속성 |
+| controls | 볼륨, 탐색, 일시정지/재생 등 브라우저가 사용자 컨트롤을 제공하는 속성 |
+| crossorigin | CORS를 사용해 지정한 오디오 파일을 가져올지 나타내는 열거형 속성 |
+| loop | 반복 재생을 지정하는 속성 |
+| muted | 음소거를 지정하는 속성 |
+| preload | 재생하기 전에 먼저 오디오를 불러오게 하는 속성<br> none : 오디오를 미리 불러오지 않습니다.<br> metadata: 길이 등 오디오 메타데이터만 미리 불러오도록 지정합니다.<br> auto: 사용자가 오디오를 재생할 것으로 예상하지 않더라도 전체 오디오 파일을 미리 불러옵니다. <br> 빈 문자열: auto와 같습니다. |
+| src | 삽입할 오디오의 URL |
+
+<br>
+
+- 오디오에서 지원하는 MIME 타입은 아래와 같습니다.
+
+| MIME 타입 | 설명 |
+|----------------------|----------------------------------------|
+| audio/wave, audio/wav,<br> audio/x-wav,<br> audio/x-pn-wav | WAVE 컨테이너 형식의 오디오 파일입니다. |
+| audio/webm | WebM 컨테이너 형식의 오디오 파일입니다.  |
+| audio/ogg | Ogg 컨테이너 형식의 오디오 파일입니다. |
+| audio/mp3 | mpeg level 3의 오디오 파일입니다. |
+
+
 
 <br>
 
 ### 6-2-2. 오디오 요소 문법
 
 ```comment
-<audio [controls | autoplay | muted]>
+<audio [controls | autoplay | muted | autoplay | loop]>
     <source type="MIME타입" src="파일이름을포함한사운드파일경로">
     ....
 </audio>
@@ -383,6 +423,16 @@
 
 ### 6-2-3. 오디오 요소 사용 예시
 
+```html
+<figure>
+    <figcaption>아이브의 노래를 들어보세요.</figcaption>
+    <audio controls loop>
+        <source type="audio/mp3" sec="./sound/ive1.mp3" />
+        <source type="audio/ogg" sec="./sound/ive1.ogg" />
+        <source type="audio/wav" sec="./sound/ive1.wav" />
+    </audio>    
+</figure>
+```
 
 <br><br>
 
@@ -394,13 +444,54 @@
 
 #### 6-3-1. 비디오 요소의 속성과 타입
 
+- 비디오 요소에 지정하는 속성은 다음과 같습니다.
+
+| 속성 | 설명 | 
+|----------------|----------------------------------------------------------------|
+| autoplay | 해당 페이지가 로딩되면 자동으로 비디오가 시작되도록 설정하는 속성 |
+| controls | 볼륨, 탐색, 일시정지/재생 등 브라우저가 사용자 컨트롤을 제공하는 속성 |
+| crossorigin | CORS를 사용해 지정한 비디오 파일을 가져올지 나타내는 열거형 속성 |
+| loop | 반복 재생을 지정하는 속성 |
+| muted | 음소거를 지정하는 속성 |
+| preload | 재생하기 전에 먼저 비디오를 불러오게 하는 속성<br> none : 비디오를 미리 불러오지 않습니다.<br> metadata: 길이 등 비디오 메타데이터만 미리 불러오도록 지정합니다.<br> auto: 사용자가 비디오를 재생할 것으로 예상하지 않더라도 전체 비디오 파일을 미리 불러옵니다. <br> 빈 문자열: auto와 같습니다. |
+| src | 삽입할 비디오의 URL |
+| poster | 대기화면에 넣을 썸네일 이미지를 지정합니다. |
+
+<br>
+
+- 비디오에서 지원하는 MIME 타입은 아래와 같습니다.
+
+| MIME 타입 | 설명 |
+|----------------------|----------------------------------------|
+| audio/webm | WebM 컨테이너 형식의 오디오 파일입니다.(WEBM)  |
+| video/ogg | Ogg 컨테이너 형식의 오디오 파일입니다.(OGV) |
+| video/mp4 | mpeg level 4의 비디오 파일입니다.(MP4) |
+
 <br>
 
 #### 6-3-2. 비디오 요소의 기본 문법
 
+```comment
+<video [controls | autoplay | muted | autoplay | loop | poster="대기화면이미지URL"]>
+    <source type="MIME타입" src="파일이름을포함한비디오파일경로">
+    ....
+</video>
+```
+
 <br>
 
 #### 6-3-3. 비디오 요소의 사용 예시
+
+```html
+<figure>
+    <figcaption>아이브의 뮤직 비디오를 감상 해보세요.</figcaption>
+    <video controls loop>
+        <source type="video/mp4" sec="./vdo/ive1.mp4" />
+        <source type="video/ogg" sec="./vdo/ive1.ogv" />
+        <source type="video/webm" sec="./vdo/ive1.webm" />
+    </video>    
+</figure>
+```
 
 <br><br>
 
@@ -466,14 +557,254 @@
 
 ### 6-7. iframe 요소
 
-<br>
-
-#### 6-7-1. iframe 요소의 기본 문법
+- iframe은 inline frame의 약자로서 웹 페이지 안에 또 다른 웹페이지나 미디어, 콘텐츠 등을 삽입할 수 있도록하는 요소입니다.
 
 <br>
 
-#### 6-7-2. iframe 요소의 사용 예시
+#### 6-7-1. iframe 요소의 속성
 
+| 속성 | 설명 | 예시 |
+|-----------|--------------------------------------------------|------------------------|
+| src | 프레임에 표시할 파일의 경로 또는 인터넷 주소 | src="head.html" |
+| srcdoc | 프레임에 표시할 HTML 코드를 지정합니다. | srcdoc="<p>IVE MUSIC</p>" |
+| name | 하이퍼링크에서 호출할 target으로 지정가능하도록 프레임의 이름을 지정 | &lt;iframe src="content.html" name="_content"&gt;&lt;/iframe&gt;<br>&lt;a href="sub_content" target="_content" &gt;서브&lt;/a&gt; |
+| allow | 허용할 기능 정책을 지정합니다. | allow="fullscreen" |
+| allowfullscreen | 전체화면으로 볼 수 있도록 지정합니다. | allowfullscreen |
+| referrerpolicy | iframe 콘텐츠를 가져올 때 보낼 리퍼러를 설정합니다. | referrerpolicy="no-referrer" |
+| sandbox | iframe의 제한 사항을 설정합니다 | sandbox="allow-same-origin" |
+| frameborder | 테두리 표시여부를 지정합니다. | frameborder="0" : 표시안함<br> frameborder="1" : 표시함 |
+| width | 프레임의 너비를 px 단위로 숫자만 기입하여 지정합니다. | width="400" |
+| height | 프레임의 높이를 px 단위로 숫자만 기입하여 지정합니다. | width="300" |
+| scrolling | 스크롤바의 표시 여부를 yes/no로 지정합니다. | scrolling="no" |
+| noresize | 창의 크기를 고정시킵니다. | HTML5 이상에서는 사용하지 않음. |
+| align | 프레임 내부 콘텐츠의 정렬방식.<br> 지정 가능한 값 : left &#124; center &#124; right | HTML5 이상에서는 사용하지 않음. |
+| border | 테두리의 두께를 지정합니다. | HTML5 이상에서는 사용하지 않음. |
+| borderclolor | 테두리 색을 지정합니다. | HTML5 이상에서는 사용하지 않음. |
+
+
+<br>
+
+##### sandbox 속성의 지정가능한 값
+
+| 속성값 | 설명 |
+|---------------|-------------------------------------------------------------------------------|
+| 비어놓음 	| 모든 제한 사항(restrictions)을 적용함. |
+| allow-forms | 리소스(resource)가 폼 데이터를 제출할 수 있도록 허용함. |
+| allow-modals | 리소스가 모달 윈도우(modal window)를 열 수 있도록 허용함. |
+| allow-orientation-lock | 리소스가 화면 방향 전환을 잠글 수 있도록 허용함. |
+| allow-pointer-lock | 리소스가 Pointer Lock API를 사용할 수 있도록 허용함. |
+| allow-popups | window.open()이나 target=“_blank”, showModalDialog() 등의 팝업(popup)을 허용함. |
+| allow-popups-to-escape-sandbox | 모든 제한 사항이 적용된 문서(sandboxed document)에서 새로운 창(window)을 열 때 제한 사항을 상속받지 않은 창을 열 수 있도록 허용함. |
+| allow-presentation | 리소스가 프레젠테이션 세션(presentation section)을 시작할 수 있도록 허용함. |
+| allow-same-origin | 리소스가 same-origin policy를 통과된 것처럼 취급될 수 있도록 허용함. |
+| allow-scripts | 리소스가 스크립트를 실행할 수 있도록 허용하지만, 팝업창은 생성하지 못함. |
+| allow-storage-access-by-user-activation | 리소스가 Storage Access API를 사용하여 상위 스토리지 기능에 접근 요청을 할 수 있도록 허용함. |
+| allow-top-navigation | 리소스가 최상위 브라우징 컨텍스트(_top)를 탐색할 수 있도록 허용함. |
+| allow-top-navigation-by-user-activation | 리소스가 사용자의 요청이 있을 때만 최상위 브라우징 컨텍스트(_top)를 탐색할 수 있도록 허용함. |
+
+<br>
+
+##### allow 속성에 지정할 수 있는 값
+
+| 속성값 | 설명 |
+|---------------|-------------------------------------------------------------------------------|
+| accelerometer | 출력 가속기에 액세스할 수 있도록 합니다. |
+| ambient-light-sensor | AmbientLightSensor(주변광센서) 인터페이스에 대한 액세스를 허용합니다. |
+| autoplay | 비디오 및 오디오 파일을 자동 재생할 수 있습니다. |
+| battery | 배터리 상태 API에 대한 액세스를 허용합니다. |
+| camera | 카메라에 대한 액세스를 허용합니다. |
+| encrypted-media | 현재 미디어에 보안이 적용됩니다. |
+| fullscreen | 전체 화면 모드에 대한 액세스를 허용합니다. | 
+| geolocation | Geolocation API에 대한 액세스를 허용합니다. |
+| gyroscope | 센서 API 자이로스코프 인터페이스에 대한 액세스를 허용합니다. |
+| magnetometer | 센서 API 자력계 인터페이스에 대한 액세스를 허용합니다. |
+| microphone | 기기 마이크에 대한 액세스를 허용합니다. |
+| midi | 웹 MIDI API에 대한 액세스를 허용합니다. |
+| payment | 지불 요청 API에 대한 액세스를 허용합니다. |
+| picture-in-picture | 프레임에 이미지 넣기를 허용합니다. |
+| usb | WebUSB API에 대한 액세스를 허용합니다. |
+| clipboard-write | 클립보드에 쓰기를 허용합니다. |
+| vibrate | 진동 API에 대한 액세스를 허용합니다. |
+| web-share | 웹 공유를 허용합니다. |
+
+<br>
+
+#### 6-7-2. iframe 요소의 기본 문법
+
+```comment
+<iframe src="표시할파일의경로또는인터넷주소" name="프레임이름" [width="숫자" | height="숫자" | srcdoc="표시할HTML코드" | allow="허용할기능정책" | referrerpolicy="리퍼러설정" | sandbox="제한사항" | frameborder="0 | 1" ]>
+</iframe>
+```
+
+<br>
+
+#### 6-7-3. iframe 요소의 사용 예시
+
+```html
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/6ZUIwj3FgUY" title="IVE 아이브 &#39;I AM&#39; MV" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+```
 
 <br><hr><br>
+
+## 7. 테이블 관련 요소
+
+- 웹 페이지에 표를 작성할 수 있도록 하는 태그로서 각 제목행과 내용행을 그룹화하고, 각 컬럼은 한 행으로 그룹화하여 표시할 수 있습니다.
+
+### 7-1. 테이블 기본 구성
+
+![테이블태그기본구성](./table1.png)
+
+- 위 그림은 HTML4 기준의 테이블이며, 현재는 테이블의 내용을 표시하는 tbody 요소가 더 추가되어 있습니다.
+
+| 태그명 | 설명 |
+|--------------|----------------------------------------------|
+| table | 테이블 전체를 정의할 때 사용하는 ROOT 태그입니다. |
+| caption | 테이블의 제목을 정의할 때 사용하는 table의 부속 태그입니다. |
+| thead | 테이블의 항목이름이 있는 영역을 정의하는 table의 부속 태그입니다. |
+| tfoot | 테이블의 맨 아래에 있는 통계와 같은 영역을 정의하는 table의 부속 태그입니다. |
+| tbody | 테이블의 실제 표시할 데이터가 있는 영역을 정의하는 table의 부속 태그입니다. |
+| tr | 테이블에서 행을 구분할 사용하는 thead나 tbody의 부속 태그입니다. |
+| th | 테이블의 항목(컬럼) 이름을 지정하는 tr의 부속 태그입니다. |
+| td | 테이블의 실제 데이터가 표시될 컬럼의 값을 적는 tr의 부속 태그입니다. |
+
+<br>
+
+### 7-2. 테이블 관련 속성
+
+| 속성명 | 설명 |
+|----------------|--------------------------------------------------------------------|
+| width | 테이블의 전체 너비를 지정하는 속성으로 숫자만 값으로 입력합니다. |
+| height | 테이블의 전체 높이를 지정하는 속성으로 숫자만 값으로 입력합니다. |
+| cellpadding | 테이블 각 셀의 안 여백을 지정하는 속성으로 숫자만 값으로 입력합니다. |
+| cellspacing | 테이블 각 셀과 셀 사이의 바깥여백을 지정하는 속성으로 숫자만 값으로 입력합니다. |
+| border | 테이블의 선의 두께를 지정하는 속성으로 숫자만 값으로 입력합니다. 다만, HTML5에서는 CSS에서 설정하도록 합니다. |
+| align, valign, bgcolor, bordercolor | 정렬이나 배경색, 선색을 지정하는 속성. 다만, HTML5에서는 사용하지 않습니다. |
+| rowspan | 행 단위로 여러 개의 셀을 합치며, 합칠 셀의 숫자를 해당 td나 th에 지정합니다. |
+| colspan | 칸 단위로 여러 개의 셀을 합치며, 합칠 셀의 숫자를 해당 td나 th에 지정합니다. |
+
+※ rowspan과 colspan 속성은 해당 셀에만 지정합니다.
+
+<br>
+
+### 7-3. 테이블 기본 문법
+
+```comment
+<table [cellpadding="숫자" | cellspacing="숫자"]>
+    <thead>
+        <tr>
+            <th>컬럼명1</th><th>컬럼명2</th><th>컬럼명3</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>데이터11</td><td>데이터12</td><td>데이터13</td>
+        </tr>
+        <tr>
+            <td>데이터21</td><td>데이터22</td><td>데이터23</td>
+        </tr>
+        ....
+    </tbody>
+</table>
+```
+
+<br>
+
+### 7-4. 테이블 기본 예시 코드
+
+```html
+    <table id="tb1" cellspacing="0" cellpadding="10">
+        <caption><h2>KH 교육원 능력단위 평가표</h2></caption>
+        <thead>
+            <tr>
+                <th>연번</th><th>이름</th><th>평가1</th><th>평가2</th><th>비고</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td><td>김아무개</td><td>90</td><td>85</td><td>준수한 편</td>
+            </tr>
+            <tr>
+                <td>2</td><td>박아무개</td><td>85</td><td>75</td><td>노력한 편</td>
+            </tr>
+            <tr>
+                <td>3</td><td>이아무개</td><td>95</td><td>100</td><td>최우수</td>
+            </tr>
+            <tr>
+                <td>4</td><td>최아무개</td><td>80</td><td>80</td><td>준수한 편</td>
+            </tr>
+            <tr>
+                <td>5</td><td>강아무개</td><td>80</td><td>85</td><td>준수한 편</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr><td rowspan="2">총평</td><td colspan="4">전반적으로 준수한 편</td></tr>
+            <tr><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td></tr>
+        </tfoot>
+    </table>
+```
+
+<br><hr><br>
+
+## 8. 폼 관련 요소
+
+- 웹의 입력 양식을 말하며, 다른 요소에 비해 폼 요소는 클라이언트와 서버 간의 데이터 전송을 하는 역할을 합니다.
+
+<br>
+
+### 8-1. 폼 요소
+
+- 입력 양식의 ROOT 요소이며, FORM 태그라고 하는데 다른 부속요소는 폼 컨트롤이라 합니다.
+
+<br><br>
+
+### 8-2. 폼 요소의 관련 속성
+
+| 속성명 | 설명 |
+|----------------|--------------------------------------------------------------------|
+| accept-charset | 폼 전송시에 사용되는 문자 인코딩을 지정합니다. |
+| action | 폼이 전송될 때 양식 데이터를 보낼 위치를 지정합니다. |
+| autocomplete | 폼에 자동 완성 기능을 켜거나 꺼야 하는지 여부를 지정합니다. |
+| enctype | 폼이 전송될 때 양식 데이터를 인코딩하는 방법을 지정합니다. |
+| method | 폼 데이터를 보낼 때 사용할 HTTP 방법을 지정합니다. |
+| name | 폼의 이름을 지정합니다. |
+| novalidate | 폼 전송 시 양식의 유효성을 검사하지 않도록 지정합니다. |
+| rel | 연결된 리소스와 현재 문서 간의 관계를 지정합니다.  |
+| target | 폼 데이터를 전송한 후 받은 응답을 표시할 위치를 지정합니다. |
+
+<br><br>
+
+### 8-3. 폼 컨트롤의 종류
+
+- 모든 폼 컨트롤은 해당 FORM 요소 안에 있어야 합니다.
+
+| 폼 컨트롤 종류 | 해당 태그와 타입 | 설명 |
+|-------------|--------------|--------------------------------------------------------|
+| 텍스트 입력란 | input type="text" | 일반적인 텍스트 입력란입니다. |
+| 비밀번호 입력란 | input type="password" | 비밀번호 입력란으로 입력한 글자수 만큼 ● 이 표시됩니다. |
+| 숫자 입력란 | input type="number" | 직접 숫자를 입력하거나 스피너를 통하여 숫자를 증가 또는 감소시켜 입력할 수 있습니다.<br> HTML5에서 추가된 컨트롤 |
+| 일반 버튼 | input type="button" | 자바스크립트를 활용하여 이벤트를 적용시켜야 하는 일반적인 버튼입니다. |
+| 이미지 버튼 | input type="image" | 배경이미지를 넣어 이미지 버튼을 추가할 수 있습니다. |
+| 전송 버튼 | input type="submit" | 폼의 데이터를 정해진 action에 전송하는 역할을 하는 기본 컨트롤입니다. |
+| 취소 버튼 | input type="reset | 취소 버튼은 기존의 입력 폼에 대한 내용을 모두 초기화합니다. |
+| 체크 박스 | input type="checkbox" | On/Off 와 같이 여러 항목을 체크 또는 체크해제할 수 있도록 하는 기본 컨트롤로 모두 체크하거나 하나도 체크하지 않아도 됩니다. |
+| 라디오 버튼 | input type="radio" | 여러 항목 중에서 반드시 하나만 선택해야 하는 곳에 활용되는 기본 컨트롤입니다. |
+| 파일 버튼 | input type="file" | 파일을 업로드 할 수 있도록 해당 파일의 정보를 입력할 수 있는 기본 컨트롤입니다. |
+| 숨김 | input type="hidden | 화면에는 출력되지 않으면서 특정 내용을 서버로 전달하려고 할 경우 사용하는 기본 컨트롤입니다. |
+| 컬러 입력란 | input type="color" | 컬러 피커를 통하여 원하는 색상 정보를 입력합니다.<br> HTML5에서 추가된 컨트롤 |
+| 날짜 입력란 | input type="date" | 날짜를 직접 입력하거나 카렌다를 표시하여 입력할 수 있도록 합니다.<br> HTML5에서 추가된 컨트롤 |
+| 월 입력란 | input type="month" | 월을 직접 입력하거나 카렌다를 표시하여 입력할 수 있도록 합니다.<br> HTML5에서 추가된 컨트롤 |
+| 주 입력란 | input type="week" | 주를 직접 입력하거나 카렌다를 표시하여 입력할 수 있도록 합니다.<br> HTML5에서 추가된 컨트롤 |
+| 시간 입력란 | input type="time" | 시간을 직접 입력하거나 시계를 표시하여 입력할 수 있도록 합니다.<br> HTML5에서 추가된 컨트롤 |
+| 이메일 입력란 | input type="email" | 이메일 입력에 대한 유효성 검증을 가능하게 하는 입력란입니다.<br> HTML5에서 추가된 컨트롤 |
+| 인터넷 주소 입력란 | input type="url" | 인터넷 주소 입력에 대한 유효성 검증을 가능하게 하는 입력란입니다.<br> HTML5에서 추가된 컨트롤 |
+| 검색어 입력란 | input type="search" | 검색어 입력에 대한 유효성 검증을 가능하게 하는 입력란입니다.<br> HTML5에서 추가된 컨트롤 |
+| 범위 입력란 | input type="range" | 최소값과 최대값을 동시에 입력할 수 있습니다. <br> HTML5에서 추가된 컨트롤 |
+| 공용 버튼 | button type="" | type을 button, submit, reset 등 원하는 타입으로 설정하여 사용할 수 있는 버튼 요소입니다. | 
+| 레이블 | label | 데이터를 입력하거나 선택하는 기능은 없지만, 특정 항목에 대한 이름표를 지정할 때 사용합니다. |
+| 선택 목록 상자 | select | 클릭시 해당 option 요소가 보이며, 원하는 option 을 선택할 수 있는 컨트롤입니다. |
+| 옵션 | option | select 요소의 부속 요소로 해당 목록에 나타나는 option에 대한 값을 지정할 때 활용됩니다. |
+| 텍스트 영역 | textarea | 여러 줄로 된 문단을 입력할 때 사용되는 컨트롤입니다. |
+| 폼 분할 | fieldset | 해당 폼을 여러 항목으로 나누려고 할 경우 활용됩니다. |
+| 폼 분할 제목 레이블 | legend | 해당 필드셋(폼 분할) 영역에 대한 제목 레이블을 설정합니다. |
+
 
