@@ -6,6 +6,15 @@
 - html 문서는 단순히 텍스트 파일에 불과하고 웹 브라우저가 해석을 해서 구조를 통해 화면에 렌더링 해주게 되고 사용자는 View 라고 하는 스크린(브라우저 화면)을 통해 접하게 되는 것입니다.
 - 현재는 웹 문서의 표준을 HTML5 로 규정하고 있습니다.
 
+<br>
+
+![HTML치트시트](./html_cheet_sheet2.png)
+
+![HTML치트시트](./html_cheet_sheet3.png)
+
+![HTML치트시트](./html_cheet_sheet4.png)
+
+<br>
 
 ## 1. HTML의 기본 문서 구조
 
@@ -761,15 +770,25 @@
 
 | 속성명 | 설명 |
 |----------------|--------------------------------------------------------------------|
-| accept-charset | 폼 전송시에 사용되는 문자 인코딩을 지정합니다. |
+| accept-charset | 폼 전송시에 사용되는 문자 인코딩을 지정합니다.<br> UTF-8 또는 ISO-8859-1로 지정할 수 있습니다. |
 | action | 폼이 전송될 때 양식 데이터를 보낼 위치를 지정합니다. |
 | autocomplete | 폼에 자동 완성 기능을 켜거나 꺼야 하는지 여부를 지정합니다. |
 | enctype | 폼이 전송될 때 양식 데이터를 인코딩하는 방법을 지정합니다. |
-| method | 폼 데이터를 보낼 때 사용할 HTTP 방법을 지정합니다. |
+| method | 폼 데이터를 보낼 때 사용할 HTTP 방법을 지정합니다. <br> 값으로는 post 또는 get을 지정할 수 있습니다. |
 | name | 폼의 이름을 지정합니다. |
 | novalidate | 폼 전송 시 양식의 유효성을 검사하지 않도록 지정합니다. |
 | rel | 연결된 리소스와 현재 문서 간의 관계를 지정합니다.  |
-| target | 폼 데이터를 전송한 후 받은 응답을 표시할 위치를 지정합니다. |
+| target | 폼 데이터를 전송한 후 받은 응답을 표시할 위치를 지정합니다.<br> 값으로는 _blank, _self, _parent, _top, 프레임이름 등을 지정할 수 있습니다.|
+
+<br>
+
+#### 8-2-1. enctype 속성의 설정값
+
+| 설정값 | 설명 |
+|----------------------|---------------------------------------------------------------------------|
+| application/x-www-form-urlencoded | 디폴트값으로 모든 데이터를 전송 전에 인코딩합니다. |
+| multipart/form-data | 폼을 통하여 파일을 업로드하는 경우 필요합니다. |
+| text/plain | 인코딩 없이 데이터를 보냅니다. |
 
 <br><br>
 
@@ -802,9 +821,262 @@
 | 공용 버튼 | button type="" | type을 button, submit, reset 등 원하는 타입으로 설정하여 사용할 수 있는 버튼 요소입니다. | 
 | 레이블 | label | 데이터를 입력하거나 선택하는 기능은 없지만, 특정 항목에 대한 이름표를 지정할 때 사용합니다. |
 | 선택 목록 상자 | select | 클릭시 해당 option 요소가 보이며, 원하는 option 을 선택할 수 있는 컨트롤입니다. |
-| 옵션 | option | select 요소의 부속 요소로 해당 목록에 나타나는 option에 대한 값을 지정할 때 활용됩니다. |
+| 옵션 | option | select/datalist 요소의 부속 요소로 해당 목록에 나타나는 option에 대한 값을 지정할 때 활용됩니다. |
 | 텍스트 영역 | textarea | 여러 줄로 된 문단을 입력할 때 사용되는 컨트롤입니다. |
 | 폼 분할 | fieldset | 해당 폼을 여러 항목으로 나누려고 할 경우 활용됩니다. |
 | 폼 분할 제목 레이블 | legend | 해당 필드셋(폼 분할) 영역에 대한 제목 레이블을 설정합니다. |
+| 데이터 목록 | datalist | input 요소의 list 속성으로 지정한 곳에 데이터 목록이 표시될 수 있도록 데이터 목록을 option 요소로 열거합니다. |
 
+<br><br>
 
+### 8-4. 폼 컨트롤의 속성
+
+#### 8-4-1. 입력(input) 폼 컨트롤의 속성
+
+- input 요소나 textarea 요소 중에서 키보드로 값을 입력받는 폼 컨트롤은 아래와 같은 속성을 필요에 따라 지정하여 사용할 수 있습니다.
+
+| 속성명 | 설명 |
+|----------------|--------------------------------------------------------------------|
+| name | 해당 컨트롤 요소의 이름을 지정합니다. |
+| value | 해당 컨트롤 요소가 가지는 값을 지정합니다. |
+| readonly | 해당 컨트롤 요소의 값이 읽기전용으로 값을 입력 또는 편집하지 못하게 합니다. |
+| disabled | 해당 컨트롤 요소를 비활성화하여 해당 컨트롤 값이 전송되지 않게 합니다. |
+| size | 해당 컨트롤 요소의 입력 글자수의 너비의 크기로 화면에 나타납니다. |
+| maxlength | 해당 컨트롤 요소의 입력 가능한 글자수를 제한합니다. |
+| min | 숫자 입력이 가능한 컨트롤 요소에서 최소값을 제한합니다. |
+| max | 숫자 입력이 가능한 컨트롤 요소에서 최대값을 제한합니다. |
+| step | 숫자 입력이 가능한 컨트롤 요소에서 간격 값을 제한합니다. |
+| pattern | 해당 컨트롤 요소의 유효성 검사 패턴을 지정할 수 있습니다. |
+| placeholder | 해당 컨트롤 요소에 어떤 데이터를 입력하는지 어떤 형식으로 입력하는지에 대한 내용을 기재할 수 있으며,<br> 값 입력시 위치홀더 값은 사라집니다. |
+| required | 해당 컨트롤 요소에 반드시 값을 입력할 수 있도록 하는 필수 입력 요소로 지정합니다. |
+| autofocus | 폼이 로딩될 때 자동으로 커서가 해당 컨트롤 요소에 위치하게 합니다.<br> 단,  폼에서 하나의 컨트롤에만 적용하여야 합니다. |
+| autocomplete | 해당 컨트롤 요소에 자동 완성기능을 활성화 합니다. |
+| multiple | 파일 컨트롤에서 여러 파일을 선택할 수 있도록 합니다. |
+| list | 해당 컨트롤에 datalist 컨트롤의 목록이 나타나게 합니다.<br> 이 때 datalist의 아이디를 해당 컨트롤의 list 속성에 기재합니다. |
+
+<br>
+
+#### 8-4-2. pattern의 속성을 활용한 유효성 검증
+
+| 패턴식 | 설명 |
+|----------------|------------------------------------------------------------|
+| .{8,} | 최소 8글자 이상 입력 |
+| ^&#91;0-9#93;{3}-&#91;0-9#93;{3,4}-&#91;0-9#93;{4} | 전화번호 형식 패턴 xxx-xxx-xxxx 또는 xxx-xxxx-xxxx |
+| &#91;0-9a-zA-Z&#93;(&#91;-_\.&#93;?&#91;0-9a-zA-Z&#93;)*@&#91;0-9a-zA-Z&#93;(&#91;-_\.&#93;?&#91;0-9a-zA-Z&#93;)*\.&#91;a-zA-Z&#93;{2,3} | 이메일 정규식으로 아이디는 영문대소문자숫자가 포함되며 @기호를 중간에 포함하는 식 |
+| ^&#91;가-힣#93;{2,4}&#124;&#91;a-zA-Z#93;{2,10}\s&#91;a-zA-Z#93;{2,10} | 이름 정규식으로 한글, 영문은 각 각 가능하지만, 혼용은 불가 |
+
+<br>
+
+#### 8-4-3. 텍스트영역 폼 컨트롤의 속성
+
+| 속성명 | 설명 |
+|----------------|--------------------------------------------------------------------|
+| rows | 몇 줄까지 화면에 표시할지 지정하는 속성입니다. |
+| cols | 한 줄당 몇 개의 글자까지 표시할지 지정하는 속성입니다. |
+
+<br><br>
+
+### 8-5. 폼 관련 요소의 기본 문법
+
+```comment
+<form action="보낼위치" method="전송방식" [name="폼이름" | enctype="인코딩방식" | rel="" | target="" | novalidate]>
+    <label for="컨트롤1">
+    <input type="타입" name="컨트롤이름" id="컨트롤1" />
+    [<input type="타입" name="컨트롤이름" />
+    ......]
+    <input type="submit" value="버튼텍스트">
+    <input type="reset" value="버튼텍스트">
+</form>
+```
+
+<br><br>
+
+### 8-6. 폼 관련 요소의 사용 예시
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습 10</title>
+</head>
+<body>
+    <h2>회원 가입</h2>
+    <hr>
+    <form action="" method="post">
+        <p><strong style="color:red">*</strong> 는 필수 입력 요소입니다.</p>
+        <fieldset>
+            <legend>기본 정보</legend>
+            <table>
+                <tbody>
+                    <tr>
+                        <th><label for="id">* 아이디</label></th>
+                        <td>
+                            <p>영문 소문자로 시작하면서 숫자를 혼합한 6글자 이상 12글자 이내로 조합</p>
+                            <input type="text" name="id" id="id" placeholder="아이디 입력" pattern="[a-z0-9]{6,}" maxlength="12" autofocus required>
+                            <button type="button" style="background:deepskyblue;color:#fff;border: none;">아이디 중복 확인</button>
+                            <input type="hidden" name="idck" id="idck" value="no">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="pw">* 비밀번호</label></th>
+                        <td>
+                            <p>비밀번호는 최소 8글자 이상 12글자 이내로 입력</p>
+                            <input type="password" name="pw" id="pw" pattern="{8,}" maxlength="12" placeholder="비밀번호 입력" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="pw2">* 비밀번호 확인</label></th>
+                        <td>
+                            <input type="password" name="pw2" id="pw2" placeholder="비밀번호 확인 입력" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="name">* 이름</label></th>
+                        <td>
+                            <input type="text" name="name" id="name" placeholder="이름 입력" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="tel">* 전화번호</label></th>
+                        <td>
+                            <input type="tel" name="tel" id="tel" pattern="" placeholder="전화번호 입력" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="email">* 이메일 주소</label></th>
+                        <td>
+                            <input type="email" name="email" id="email" pattern="" placeholder="이메일 주소 입력" required>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>추가 정보</legend>
+            <table>
+                <tbody>
+                    <tr>
+                        <th><label for="birth">생년월일</label></th>
+                        <td><input type="date" name="birth" id="birth"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="age">나이</label></th>
+                        <td><input type="number" name="age" id="age" min="0" max="150" step="1"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="color">좋아하는 색</label></th>
+                        <td><input type="color" name="color" id="color"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="gender">성별</label></th>
+                        <td><input type="radio" name="gender" id="gender1" value="1" checked> 
+                            <label for="gender1"> 남</label><br>
+                            <input type="radio" name="gender" id="gender2" value="2"> 
+                            <label for="gender2"> 여</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="area">청약지역</label></th>
+                        <td><input type="checkbox" name="area" id="area1" value="1" checked> 
+                            <label for="area1"> 수도권</label><br>
+                            <input type="checkbox" name="area" id="area2" value="2"> 
+                            <label for="area2"> 충청</label>
+                            <input type="checkbox" name="area" id="area3" value="3"> 
+                            <label for="area3"> 호남</label><br>
+                            <input type="checkbox" name="area" id="area4" value="4"> 
+                            <label for="area4"> 영남</label>
+                            <input type="checkbox" name="area" id="area5" value="5"> 
+                            <label for="area5"> 기타</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="reason">가입 목적</label></th>
+                        <td>
+                            <select name="reason" id="reason">
+                                <option value="">선택안함</option>
+                                <option value="1" selected>상품 홍보</option>
+                                <option value="2">개발 학습</option>
+                                <option value="3">심심풀이</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label for="memo">하고 싶은 말</label><br>
+                            <textarea name="memo" id="memo" cols="80" rows="10"></textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <button type="submit">회원 가입</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="reset">취소</button>  
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>
+```
+
+<br><hr><br>
+
+## 9. 시멘틱 요소
+
+- 시멘틱(Semantic) 요소는 개념적 요소로서 특정 영역을 나눌 경우 몇 개의 태그만으로 하다보면, 그룹핑 영역이 헷갈려 제대로 코딩하기가 어려으므로 기능은 없으며, 오로지 그 영역의 개념만 도입한 태그들을 의미한다.
+
+![시멘틱요소](./semantic_elements.gif)
+
+| 태그명 | 설명 |
+|------------|-------------------------------|
+| header | 웹 문서의 맨 위에 위치하며, 메인메뉴와 로고타입을 포함하는 영역 |
+| footer | 웹 문서의 맨 아래에 위치하며, 카피라이트와 하단 메뉴를 포함하는 영역 |
+| aside | 왼쪽 또는 오늘쪽의 사이드바 영역을 의미 |
+| nav | 메뉴(내비게이션) 영역을 의미 |
+| article | 신문 기사과 같이 사진, 제목, 기사글 등이 들어가는 영역 |
+| div | 디비전 영역을 의미하며, 뚜렷한 의미없는 항목들을 묶어 관리하는 영역 |
+| section | 섹션 영역으로 보통 한 페이지에 해당하는 분량의 영역 |
+| figure | 배너나 슬라이더 등의 비주얼 이미지 등이 배치되는 영역 |
+| figcaption | 배너의 제목을 표시하는 영역 |
+
+<br><br>
+
+### 9-1. 시멘틱 요소의 예시 코드
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>해법수학</title>
+    <style>#hd, #contents {  border-bottom:3px solid red; }</style>
+</head>
+<body>
+    <!-- div#wrap>(header#hd>nav#tnb+a.logo+nav#gnb)+
+        (div#contents>aside#leftside+section#data)+
+        (footer#ft>address#cp) -->
+    <div id="wrap">
+        <header id="hd">
+            <nav id="tnb">상단메뉴</nav>
+            <a href="" class="logo">로고</a>
+            <nav id="gnb">메인메뉴</nav>
+        </header>
+        <div id="contents">
+            <aside id="leftside">좌측메뉴</aside>
+            <section id="data"><h2>본문 영역</h2></section>
+        </div>
+        <footer id="ft">
+            <address id="cp">Copyrights & Address</address>
+        </footer>
+    </div>
+</body>
+</html>
+```
